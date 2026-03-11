@@ -1,12 +1,13 @@
-provider "aws" {
-  region = "us-east-1"
+terraform {
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+      version = "2.4.0"
+    }
+  }
 }
 
-resource "aws_instance" "mi_servidor" {
-  ami           = "ami-0abcdef1234567890"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ServidorEjemplo"
-  }
+resource "local_file" "archivo_ejemplo" {
+  content  = "Hola, este archivo fue creado por Terraform"
+  filename = "ejemplo.txt"
 }
